@@ -6800,12 +6800,15 @@ func (pm *jsPubMsg) returnToPool() {
 	if pm == nil {
 		return
 	}
-	pm.subj, pm.dsubj, pm.reply, pm.hdr, pm.msg, pm.o = _EMPTY_, _EMPTY_, _EMPTY_, nil, nil, nil
+	pm.subj, pm.dsubj, pm.reply, pm.o = _EMPTY_, _EMPTY_, _EMPTY_, nil
 	if len(pm.buf) > 0 {
 		pm.buf = pm.buf[:0]
 	}
 	if len(pm.hdr) > 0 {
 		pm.hdr = pm.hdr[:0]
+	}
+	if len(pm.msg) > 0 {
+		pm.msg = pm.msg[:0]
 	}
 	jsPubMsgPool.Put(pm)
 }
